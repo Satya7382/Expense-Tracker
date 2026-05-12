@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom' 
 import Input from '../../components/Inputs/Input'
 import { validateEmail } from '../../utils/helper'
+import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector'
 const Signup = () => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');  
