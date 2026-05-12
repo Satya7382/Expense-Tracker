@@ -4,41 +4,40 @@ import { LuTrendingUpDown } from "react-icons/lu";
 
 const AuthLayout = ({ children }) => {
   return (
-    <div className="flex">
-      {/* Left Side */}
-      <div className="w-screen md:w-[60vw] h-screen px-12 pt-8 pb-12">
+    <div className="flex flex-col md:flex-row w-full h-screen">
+
+      {/* LEFT SIDE */}
+      <div className="w-full md:w-1/2 h-screen px-10 pt-8 pb-12 flex flex-col">
         <h2 className="text-lg font-medium text-black">FinTrack</h2>
 
-        {children}
+        <div className="flex-1 flex items-center justify-center">
+          {children}
+        </div>
       </div>
 
-      {/* Right Side */}
-      <div className="hidden md:flex w-[60vw] h-screen bg-violet-50 bg-auth-bg-img bg-cover bg-no-repeat bg-center overflow-hidden p-8 relative items-center justify-center">
+      {/* RIGHT SIDE */}
+      <div className="hidden md:flex w-1/2 h-screen bg-violet-50 bg-auth-bg-img bg-cover bg-center relative items-center justify-center overflow-hidden">
 
-        {/* Decorative Shapes */}
-        <div className="absolute -top-7 -left-5 w-48 h-48 rounded-[40px] bg-purple-600"></div>
+        {/* Decorative shapes */}
+        <div className="absolute -top-10 -left-10 w-40 h-40 rounded-[40px] bg-purple-600"></div>
+        <div className="absolute top-[35%] -right-10 w-44 h-52 rounded-[40px] border-[16px] border-fuchsia-600"></div>
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-[40px] bg-violet-600"></div>
 
-        <div className="absolute top-[30%] -right-10 w-48 h-56 rounded-[40px] border-[20px] border-fuchsia-600"></div>
-
-        <div className="absolute -bottom-7 -left-5 w-48 h-48 rounded-[40px] bg-violet-600"></div>
-
-        {/* Content Wrapper */}
+        {/* Content */}
         <div className="relative z-20 flex flex-col items-center">
 
-          {/* Stats Card */}
-          <div className="absolute -top-50 -right-10">
+          <div className="absolute -top-8 -right-8">
             <StatsInfoCard
               icon={<LuTrendingUpDown />}
-              label="Track Your Income & Expenses"
+              label="Track Income & Expenses"
               color="bg-primary"
             />
           </div>
 
-          {/* Main Image */}
           <img
             src={frontCard}
             alt="front card"
-            className="w-[120%] max-w-md object-contain"
+            className="w-[100%] max-w-md object-contain"
           />
         </div>
       </div>
@@ -48,19 +47,14 @@ const AuthLayout = ({ children }) => {
 
 export default AuthLayout;
 
-const StatsInfoCard = ({ icon, label, value, color }) => {
+/* Stats Card */
+const StatsInfoCard = ({ icon, label, color }) => {
   return (
-    <div className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-lg">
-      
-      <div
-        className={`w-12 h-12 rounded-full flex items-center justify-center text-white ${color}`}
-      >
+    <div className="flex items-center gap-3 bg-white p-3 rounded-2xl shadow-lg">
+      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white ${color}`}>
         {icon}
       </div>
-
-      <div>
-        <p className="text-xm text-slate-500">{label}</p>
-      </div>
+      <p className="text-sm text-slate-600">{label}</p>
     </div>
   );
 };
