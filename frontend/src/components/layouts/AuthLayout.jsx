@@ -26,7 +26,7 @@ const AuthLayout = ({ children }) => {
         {/* Content */}
         <div className="relative z-20 flex flex-col items-center">
 
-          <div className="absolute -top-8 -right-8">
+          <div className="absolute -top-40 ">
             <StatsInfoCard
               icon={<LuTrendingUpDown />}
               label="Track Income & Expenses"
@@ -37,7 +37,7 @@ const AuthLayout = ({ children }) => {
           <img
             src={frontCard}
             alt="front card"
-            className="w-[100%] max-w-md object-contain"
+            className="w-[200%] max-w-md object-contain"
           />
         </div>
       </div>

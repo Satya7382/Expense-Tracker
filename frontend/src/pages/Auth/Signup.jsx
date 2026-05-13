@@ -4,17 +4,14 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Input from '../../components/Inputs/Input'
 import { validateEmail } from '../../utils/helper'
-import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector'
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [name, setName] = useState('');
-    const [profilePic, setProfilePic] = useState(null);
     const navigate = useNavigate();
     const handleSignup = async (e) => {
         e.preventDefault();
-        let profileImageUrl = "";
         if (!email || !password || !name) {
             setError('Please fill in all fields');
             return;
@@ -35,7 +32,6 @@ const Signup = () => {
                 <h3 className='text-xl font-semibold text-black'>Welcome! Create an Account</h3>
                 <p className='text-xs text-slate-700 mt-[5px] mb-6'>Join us by entering your details below</p>
                 <form noValidate onSubmit={handleSignup} className='flex flex-col'>
-                    <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
                     <div className="flex gap-4">
                         <div className="w-1/2">
                             <Input

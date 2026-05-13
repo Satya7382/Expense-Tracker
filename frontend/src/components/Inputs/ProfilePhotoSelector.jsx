@@ -38,7 +38,7 @@ const ProfilePhotoSelector = ({ image, setImage }) => {
           <LuUser size={40} />
 
           <button type="button" onClick={onChooseFile}>
-            <LuUpload size={24} className="absolute mt-3 bg-primary rounded-full p-1" />
+            <LuUpload size={24} className="absolute mt-3 bg-primary rounded-full h-6 w-6 p-1" />
           </button>
         </div>
       ) : (
