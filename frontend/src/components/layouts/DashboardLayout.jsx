@@ -19,9 +19,9 @@ const DashboardLayout = ({ children, activeMenu }) => {
 
                 <div className="hidden lg:block w-64">
 
-                    (
+                    {user && (
                         <SideMenu activeMenu={activeMenu} />
-                    )
+                    )}
 
                 </div>
 

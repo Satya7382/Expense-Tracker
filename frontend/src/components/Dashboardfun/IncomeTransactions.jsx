@@ -20,21 +20,27 @@ const IncomeTransactions = ({ transactions = [], onSeeMore }) => {
             </div>
 
             <div className="mt-6 space-y-4">
-                {transactions.slice(0, 5).map((income) => (
-                    <TransactionInfoCard
-                        key={income._id}
-                        title={income.source}
-                        icon={income.icon}
-                        date={
-                            income.date
-                                ? moment(income.date).format("Do MMM YYYY")
-                                : "No Date"
-                        }
-                        amount={income.amount}
-                        type="income"
-                        hideDeleteBtn={true}
-                    />
-                ))}
+                {transactions?.length === 0 ? (
+                    <p className='text-center text-gray-500 col-span-full p-10'>
+                        No recent Income records found.
+                    </p>
+                ) : (
+                    transactions.slice(0, 5).map((income) => (
+                        <TransactionInfoCard
+                            key={income._id}
+                            title={income.source}
+                            icon={income.icon}
+                            date={
+                                income.date
+                                    ? moment(income.date).format("Do MMM YYYY")
+                                    : "No Date"
+                            }
+                            amount={income.amount}
+                            type="income"
+                            hideDeleteBtn={true}
+                        />
+                    ))
+                )}
             </div>
         </div>
     );

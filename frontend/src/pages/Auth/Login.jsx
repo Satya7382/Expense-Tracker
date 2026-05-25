@@ -35,8 +35,8 @@ const Login = () => {
             const { token } = response.data;
             if (token) {
                 localStorage.setItem('token', token);
-                updateUser(response.data.user);
-                navigate('/dashboard');
+                updateUser(response.data.user); 
+                window.location.href = "/dashboard";
             }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.message) {

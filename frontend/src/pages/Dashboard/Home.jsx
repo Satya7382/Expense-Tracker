@@ -36,7 +36,6 @@ const Home = () => {
 
   useEffect(() => {
     fetchDashboardData();
-    return () => { };
   }, []);
   return (
     <DashboardLayout activeMenu="Dashboard">

@@ -37,7 +37,7 @@ const Signup = () => {
             if (token) {
                 localStorage.setItem('token', token);
                 updateUser(response.data.user);
-                navigate('/dashboard');
+                window.location.href = "/dashboard";
             }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.message) {

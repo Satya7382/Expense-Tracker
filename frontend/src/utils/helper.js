@@ -23,4 +23,16 @@ const prepareIncomeBarChartData = (data = []) => {
     }));
     return chartData;
 }
-export { validateEmail, addThousandsSeparator , prepareIncomeBarChartData}
+
+const prepareExpenseBarChartData = (data = []) => {
+    const sortedData = [...data].sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+    );
+    const chartData = sortedData.map((item) => ({
+        date: moment(item?.date).format('Do MMM'),
+        amount: item?.amount,
+        source: item?.source,
+    }));
+    return chartData;
+}
+export { validateEmail, addThousandsSeparator , prepareIncomeBarChartData, prepareExpenseBarChartData}

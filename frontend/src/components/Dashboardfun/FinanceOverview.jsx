@@ -4,9 +4,18 @@ const COLORS = ["#875CF5", "#6c080dff", "#FF6900"];
 
 const FinanceOverview = ({ totalBalance, totalIncome, totalExpenses }) => {
   const balanceData = [
-    { name: "Total Balance", amount: totalBalance },
-    { name: "Total Expenses", amount: totalExpenses },
-    { name: "Total Income", amount: totalIncome },
+    {
+      name: "Total Balance",
+      amount: Math.max(totalBalance, 0),
+    },
+    {
+      name: "Total Expenses",
+      amount: Math.max(totalExpenses, 0),
+    },
+    {
+      name: "Total Income",
+      amount: Math.max(totalIncome, 0),
+    },
   ];
 
   return (

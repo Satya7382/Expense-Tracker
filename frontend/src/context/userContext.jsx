@@ -1,56 +1,64 @@
 import React, {
   createContext,
   useState,
-  useEffect
+  useCallback
 } from 'react';
 
 import axiosInstance from '../utils/axiosInstance';
+import { API_PATHS } from '../utils/apiPaths';
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
 
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    const updateUser = (userData) => {
-        setUser(userData);
-    };
+  const fetchUser = useCallback(async () => {
+    const token = localStorage.getItem("token");
 
-    const clearUser = () => {
-        setUser(null);
-    };
+    if (!token) return;
 
-    const fetchUser = async () => {
+    try {
+      setLoading(true);
 
-        try {
+      const response = await axiosInstance.get(
+        API_PATHS.AUTH.GET_USER_INFO
+      );
 
-            const response = await axiosInstance.get("/api/auth/getUser");
+      setUser(response.data);
 
-            setUser(response.data);
+    } catch (error) {
+      console.log("Fetch user error:", error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
 
-        } catch (error) {
+  }, []);
 
-            console.log(error);
-        }
-    };
+  const updateUser = (userData) => {
+    setUser(userData);
+  };
 
-    useEffect(() => {
+  const clearUser = () => {
+    setUser(null);
+    localStorage.removeItem("token");
+  };
 
-        fetchUser();
-
-    }, []);
-
-    return (
-        <UserContext.Provider
-            value={{
-                user,
-                updateUser,
-                clearUser
-            }}
-        >
-            {children}
-        </UserContext.Provider>
-    );
+  return (
+    <UserContext.Provider
+      value={{
+        user,
+        loading,
+        fetchUser,
+        updateUser,
+        clearUser
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserProvider;
